@@ -1,5 +1,6 @@
 package com.example.test261.service;
 
+import com.example.test261.model.Category;
 import com.example.test261.model.Product;
 import com.example.test261.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +38,10 @@ private ProductRepository productRepository;
     public Iterable<Product> findByName(String name) {
         return productRepository.findByName(name);
     }
+
+    @Override
+    public Iterable<Product> findByCategory(String category) {
+        return productRepository.findByCategory(category);
+    }
+
 }

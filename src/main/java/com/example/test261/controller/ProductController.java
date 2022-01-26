@@ -2,6 +2,7 @@ package com.example.test261.controller;
 
 import com.example.test261.model.Category;
 import com.example.test261.model.Product;
+import com.example.test261.service.CategoryService;
 import com.example.test261.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -63,5 +64,11 @@ public class ProductController {
         Iterable<Product> products = productService.findByName(key);
         return new ResponseEntity<>(products,HttpStatus.OK);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<Iterable<Product>> search(@RequestParam String name){
+        return new ResponseEntity<>(productService.findByCategory(name), HttpStatus.ACCEPTED);
+    }
+
 
 }
