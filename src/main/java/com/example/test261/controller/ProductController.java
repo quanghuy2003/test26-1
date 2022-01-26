@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -37,5 +38,13 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<Product> findById(@PathVariable Long id) {
         return new ResponseEntity<>(productService.findById(id).get(), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody Product product) {
+        Optional<Product> productOptional = productService.findById(id);
+        product.setId(productOptional.get().getId());
+        productService.save(product);
+        return new ResponseEntity<>(productOptional.get(), HttpStatus.OK);
     }
 }
