@@ -57,4 +57,11 @@ public class ProductController {
         productService.remove(id);
         return new ResponseEntity<>(product.get(), HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/search/{key}")
+    public ResponseEntity<Iterable<Product>> findByNameProduct(@PathVariable String key){
+        Iterable<Product> products = productService.findByName(key);
+        return new ResponseEntity<>(products,HttpStatus.OK);
+    }
+
 }

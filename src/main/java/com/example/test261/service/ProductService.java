@@ -32,4 +32,9 @@ private ProductRepository productRepository;
     public void remove(Long id) {
         productRepository.deleteById(id);
     }
+
+    @Override
+    public Iterable<Product> findByName(String name) {
+        return productRepository.findByName(name);
+    }
 }
