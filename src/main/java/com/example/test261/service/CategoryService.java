@@ -2,11 +2,15 @@ package com.example.test261.service;
 
 import com.example.test261.model.Category;
 import com.example.test261.repository.CategoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class CategoryService implements ICategoryService{
 
+    @Autowired
     private CategoryRepository categoryRepository;
     @Override
     public void save(Category category) {
